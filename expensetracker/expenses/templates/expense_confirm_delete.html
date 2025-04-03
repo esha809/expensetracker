@@ -1,0 +1,61 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 350px;
+    }
+    h2 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+    .btn {
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        color: white;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+    }
+    .btn-delete {
+        background: #dc3545;
+    }
+    .btn-delete:hover {
+        background: #c82333;
+    }
+    .btn-cancel {
+        background: #6c757d;
+    }
+    .btn-cancel:hover {
+        background: #5a6268;
+    }
+</style>
+
+<div class="container">
+    <h2>Are you sure you want to delete this expense?</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        <div class="btn-container">
+            <button type="submit" class="btn btn-delete">🗑 Delete</button>
+            <a href="{% url 'expense_list' %}" class="btn btn-cancel">❌ Cancel</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,104 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        text-align: center;
+    }
+    h2 {
+        margin-bottom: 15px;
+        color: #333;
+    }
+    .top-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+    .btn {
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        color: white;
+        text-align: center;
+    }
+    .btn-add {
+        background: #28a745;
+    }
+    .btn-add:hover {
+        background: #218838;
+    }
+    .btn-logout {
+        background: #dc3545;
+    }
+    .btn-logout:hover {
+        background: #c82333;
+    }
+    .expense-list {
+        list-style: none;
+        padding: 0;
+    }
+    .expense-item {
+        background: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .expense-details {
+        text-align: left;
+    }
+    .expense-buttons {
+        display: flex;
+        gap: 5px;
+    }
+    .btn-edit {
+        background: #007bff;
+    }
+    .btn-edit:hover {
+        background: #0056b3;
+    }
+    .btn-delete {
+        background: #dc3545;
+    }
+    .btn-delete:hover {
+        background: #c82333;
+    }
+</style>
+
+<div class="container">
+    <h2>Your Expenses</h2>
+
+    <div class="top-buttons">
+        <a href="{% url 'logout' %}" class="btn btn-logout">🚪 Logout</a>
+        <a href="{% url 'expense_create' %}" class="btn btn-add">➕ Add Expense</a>
+    </div>
+
+    <ul class="expense-list">
+        {% for expense in expenses %}
+            <li class="expense-item">
+                <div class="expense-details">
+                    <strong>{{ expense.title }}</strong> - ₹{{ expense.amount }} <br>
+                    <small>{{ expense.date }}</small>
+                </div>
+                <div class="expense-buttons">
+                    <a href="{% url 'expense_update' expense.id %}" class="btn btn-edit">✏ Edit</a>
+                    <a href="{% url 'expense_delete' expense.id %}" class="btn btn-delete">🗑 Delete</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
